@@ -1,0 +1,26 @@
+﻿@using BlazorFluxor.Data
+@if (IsShow)
+{
+    <TableTemplate Items="Forecasts" Context="forecast">
+        <TableHeader>
+            <th>Date</th>
+            <th>Temp. (C)</th>
+            <th>Temp. (F)</th>
+            <th>Summary</th>
+        </TableHeader>
+        <RowTemplate>
+            <td>@forecast.Date.ToShortDateString()</td>
+            <td>@forecast.TemperatureC</td>
+            <td>@forecast.TemperatureF</td>
+            <td>@forecast.Summary</td>
+        </RowTemplate>
+    </TableTemplate>
+}
+@code {
+#nullable disable
+    [Parameter]
+    public IEnumerable<WeatherForecast> Forecasts { get; set; }
+
+    [Parameter]
+    public bool IsShow { get; set; }
+}

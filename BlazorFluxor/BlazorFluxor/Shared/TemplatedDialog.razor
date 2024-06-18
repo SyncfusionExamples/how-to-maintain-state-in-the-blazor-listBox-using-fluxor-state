@@ -1,0 +1,15 @@
+﻿@if (IsShow)
+{
+    <div class="dialog-container">
+        <div class="dialog">
+            @ChildContent
+        </div>
+    </div>
+}
+
+@code {
+    //see https://learn.microsoft.com/en-us/shows/beginners-series-to-blazor/
+    //https://github.com/dotnet-presentations/blazor-workshop/blob/main/src/BlazingComponents/TemplatedDialog.razor
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public bool IsShow { get; set; }
+}

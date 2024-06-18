@@ -1,0 +1,55 @@
+﻿@page "/fetchdata"
+@using BlazorFluxor.Data
+@using Fluxor.Blazor.Web.Components;
+@using BlazorFluxor.Store.ForecastUseCase
+@using BlazorFluxor.Store
+@using BlazorFluxor.Components
+@using D20Tek.BlazorComponents
+@inherits FluxorComponent
+@inject NavigationManager NavManager
+
+
+<PageTitle>Weather Forecasts</PageTitle>
+
+<h1>Weather Forecasts</h1>
+
+<p>This component simulates fetching data from an async stream. Each forecast is listed as soon as it is available.</p>
+
+<Spinner IsVisible=@IsShowSpinner />
+<WeatherForecastTable IsShow="@IsShowTable" Forecasts="@Forecasts" />
+
+<TemplatedDialog IsShow="@IsShowError">
+    <OKDialog Heading="Error"
+              BodyText="Whoops, an error has occurred."
+              OnOK="NavigateToIndex">@ForecastState!.Value.Message</OKDialog>
+</TemplatedDialog>
+
+@code {
+    [Inject]
+    protected IState<ForecastState>? ForecastState { get; set; }
+    [Inject]
+    public IDispatcher? Dispatcher { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        if (ForecastState!.Value.IsLoading is true)
+        {
+            Dispatcher!.Dispatch(new EventMsgPageInitialized());
+        }
+
+    }
+    //An expression body definition of a read-only property
+    protected IEnumerable<WeatherForecast> Forecasts => ForecastState!.Value.Forecasts!;
+
+    protected bool IsShowError => (ForecastState!.Value.IsLoading is false && ForecastState!.Value.IsError is true);
+    protected bool IsShowTable => (ForecastState!.Value.IsLoading is false && ForecastState!.Value.IsError is false);
+    protected bool IsShowSpinner => (ForecastState!.Value.IsLoading is true && ForecastState!.Value.IsError is false);
+
+    private void NavigateToIndex()
+    {
+        Dispatcher!.Dispatch(new SetStateToNew());
+        NavManager.NavigateTo("/");
+    }
+
+}
