@@ -55,7 +55,6 @@ The application illustrates how ListBox-related data can be stored outside the U
 3. Navigate to the project directory and run it.
 
 ```bash
-cd BlazorFluxor/BlazorFluxor
 dotnet restore
 dotnet run
 ```
@@ -70,12 +69,13 @@ dotnet run
 
 - `Components/App.razor` - Root HTML document; includes the Syncfusion theme stylesheet at the end of the `<head>` section and the Syncfusion Blazor script reference at the end of the `<body>` section.
 - `Components/Routes.razor` - Configures the Router and initializes the Fluxor store.
+- `Components/_Imports.razor` - Common namespace imports.
 
 ### Pages
 
-- `Pages/Index.razor` - Main sample page demonstrating Syncfusion ListBox selection persistence using Fluxor state management.
-- `Pages/Counter.razor` - Counter page demonstrating Fluxor counter state updates.
-- `Pages/FetchData.razor` - Fetch data page demonstrating asynchronous Fluxor effects with streamed weather forecasts.
+- `Components/Pages/Index.razor` - Main sample page demonstrating Syncfusion ListBox selection persistence using Fluxor state management.
+- `Components/Pages/Counter.razor` - Counter page demonstrating Fluxor counter state updates.
+- `Components/Pages/FetchData.razor` - Fetch data page demonstrating asynchronous Fluxor effects with streamed weather forecasts.
 - `Components/Pages/Error.razor` - Error page displayed when an unhandled exception occurs.
 
 ### Components
@@ -86,10 +86,8 @@ dotnet run
 
 ### Layout
 
-- `Layout/MainLayout.razor` - Main application layout.
-- `Layout/NavMenu.razor` - Navigation menu.
-- `Layout/TemplatedDialog.razor` - Generic dialog container component that renders arbitrary content using `RenderFragment`.
-- `Layout/TableTemplate.razor` - Generic templated table component that supports customizable headers and row templates through `RenderFragment<TItem>`.
+- `Components/Layout/MainLayout.razor` - Main application layout.
+- `Components/Layout/NavMenu.razor` - Navigation menu.
 
 ### Fluxor State Management
 
