@@ -1,9 +1,9 @@
-﻿@page "/"
+@page "/"
 
 @using Fluxor
-@using BlazorFluxor.Store;
-@using BlazorFluxor.Store.ValueUseCase;
-@using Syncfusion.Blazor.DropDowns;
+@using BlazorFluxor.Store
+@using BlazorFluxor.Store.ValueUseCase
+@using Syncfusion.Blazor.DropDowns
 
 <SfListBox TValue="string[]" Value="@valueState.Value.Items" DataSource="@Vehicles" TItem="VehicleData">
     <ListBoxFieldSettings Text="Text" Value="Id" />
