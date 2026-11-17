@@ -36,26 +36,25 @@ The application illustrates how ListBox-related data can be stored outside the U
 ## Prerequisites
 
 - [Visual Studio 2022](https://visualstudio.microsoft.com/vs/) or [Visual Studio Code](https://code.visualstudio.com/)
-- [.NET SDK](https://dotnet.microsoft.com/en-us/download/dotnet) compatible with the project's target framework
+- [.NET SDK](https://dotnet.microsoft.com/en-us/download/dotnet) (.NET 10 or later)
 
 ## How to Run the Project
 
 **Visual Studio 2022**
 
 1. Clone or download this repository.
-2. Open `BlazorFluxor.sln`.
+2. Open the project in Visual Studio 2022.
 3. Restore all NuGet packages.
-4. Build the solution.
+4. Build the project.
 5. Run the application using `Ctrl+F5`.
 
 **Visual Studio Code**
 
 1. Clone or download the repository.
 2. Open the repository folder in Visual Studio Code.
-3. Navigate to the project directory.
+3. Navigate to the project directory and run it.
 
 ```bash
-cd BlazorFluxor
 dotnet restore
 dotnet run
 ```
@@ -64,21 +63,31 @@ dotnet run
 
 ## Project Structure
 
-- `Program.cs` - Configures the Blazor Server application, registers Fluxor, enables Redux DevTools support, and registers Syncfusion Blazor services.
+- `Program.cs` - Configures the .NET 10 Blazor Web App with Interactive Server render mode, registers Fluxor, enables Redux DevTools support, and registers Syncfusion Blazor services.
+
+### Root Components
+
+- `Components/App.razor` - Root HTML document; includes the Syncfusion theme stylesheet at the end of the `<head>` section and the Syncfusion Blazor script reference at the end of the `<body>` section.
+- `Components/Routes.razor` - Configures the Router and initializes the Fluxor store.
+- `Components/_Imports.razor` - Common namespace imports.
 
 ### Pages
 
-- `Pages/Index.razor` - Main sample page demonstrating Syncfusion ListBox selection persistence using Fluxor state management.
+- `Components/Pages/Index.razor` - Main sample page demonstrating Syncfusion ListBox selection persistence using Fluxor state management.
+- `Components/Pages/Counter.razor` - Counter page demonstrating Fluxor counter state updates.
+- `Components/Pages/FetchData.razor` - Fetch data page demonstrating asynchronous Fluxor effects with streamed weather forecasts.
+- `Components/Pages/Error.razor` - Error page displayed when an unhandled exception occurs.
 
 ### Components
 
 - `Components/OKDialog.razor` - Reusable dialog component with configurable heading, body content, and OK action callback.
 - `Components/ShowError.razor` - Reusable error display component that conditionally renders error content using the `IsShow` parameter.
+- `Components/WeatherForecastTable.razor` - Displays the weather forecast table.
 
-### Shared Components
+### Layout
 
-- `Shared/TemplatedDialog.razor` - Generic dialog container component that renders arbitrary content using `RenderFragment`.
-- `Shared/TableTemplate.razor` - Generic templated table component that supports customizable headers and row templates through `RenderFragment<TItem>`.
+- `Components/Layout/MainLayout.razor` - Main application layout.
+- `Components/Layout/NavMenu.razor` - Navigation menu.
 
 ### Fluxor State Management
 
